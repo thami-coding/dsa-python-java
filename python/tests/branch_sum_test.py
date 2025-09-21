@@ -4,7 +4,7 @@
 
 import unittest
 from algo_expert.branch_sum import branchSums, BinaryTree
-from collections import deque
+
 
 
 class TestProgram(unittest.TestCase):
@@ -56,29 +56,6 @@ class TestProgram(unittest.TestCase):
         tree.right.right.right = BinaryTree(200)
         self.assertEqual(branchSums(tree), [9, 16, 111, 211])
 
-
-
-class BinaryTree(BinaryTree):
-
-    def insert(self, values):
-        """Insert a list of values into the tree in level-order fashion."""
-        queue = deque([self])
-
-        for v in values:
-            while queue:
-                current = queue[0]  # Look at the first element in queue
-                if current.left is None:
-                    current.left = BinaryTree(v)
-                    queue.append(current.left)
-                    break
-                elif current.right is None:
-                    current.right = BinaryTree(v)
-                    queue.append(current.right)
-                    break
-                else:
-                    queue.popleft()  # Both children occupied, move on
-
-        return self
 
 
 if __name__ == "__main__":
